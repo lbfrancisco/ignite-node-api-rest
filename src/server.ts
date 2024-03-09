@@ -1,20 +1,4 @@
-import fastify from 'fastify'
-import { knex } from './database'
-
-const app = fastify()
-
-app.get('/hello', async () => {
-  const [transaction] = await knex('transactions')
-    .insert({
-      title: 'hello',
-      amount: 1000,
-    })
-    .returning('*')
-
-  // const transaction = await knex('transactions').select('*')
-
-  return transaction
-})
+import { app } from './app'
 
 app
   .listen({
